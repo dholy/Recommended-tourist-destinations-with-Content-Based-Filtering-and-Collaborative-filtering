@@ -129,7 +129,7 @@ Dataframe user_df berisi variabel-variabel pada *user.csv* dengan detail  sebaga
  - `Location` : Merupakan Alamat dari user
  - `Age` : Merupakan  usia dari user
  
- Terdapat 3 kolom dengan total baris data sebanyak 300 data, Dataset ini berisi informasi penting seperti alamat dan umur dari user wisatawan. Data ini akan kita kugunakan untuk menganalisa
+ Terdapat 3 kolom dengan total baris data sebanyak 300 data, Dataset ini berisi informasi penting seperti alamat dan umur dari user wisatawan. Data ini akan kita kugunakan untuk menganalisa.
 
 ### **2.  ratings_df** 
 
@@ -170,7 +170,7 @@ Dengan menggunakan fungsi `.unique().` Kita akan melihat jumlah data atribut pen
 
 ![image](https://github.com/user-attachments/assets/3ce6a516-301f-49ac-afb6-9d409ea198aa)
 
-Dari data diatas kita mendapatkan 300 pengguna, 437 destinasi wisata dalam 5 kota dengan jumlah rating mencapai 10.000
+Dari data diatas kita mendapatkan 300 pengguna, 437 destinasi wisata dalam 5 kota dengan jumlah rating mencapai 10.000.
 
 
 ### **5.  Dataset gabungan ratings_df dan tourismid_df** 
@@ -197,7 +197,7 @@ Berdasarkan data diatas terdapat 300 pengguna dengan detail sebagai berikut:
 - **min:** Nilai minimum. Usia pengguna termuda adalah 18 tahun.
 - **25%:** Kuartil pertama. Artinya, 25% dari pengguna berusia 24 tahun atau lebih muda.
 - **50%:** Median atau kuartil kedua. Ini adalah nilai tengah dari data yang telah diurutkan. Jadi, 50% pengguna berusia 29 tahun atau lebih muda.
-- **75%:** Kuartil ketiga. Artinya, 75% dari pengguna berusia 34 tahun atau lebih muda
+- **75%:** Kuartil ketiga. Artinya, 75% dari pengguna berusia 34 tahun atau lebih muda.
 - **max:** Nilai maksimum. Usia pengguna tertua adalah 40 tahun.
 
 **Menampilkan wisatawan berdasarkan daerah asal**
