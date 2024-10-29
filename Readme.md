@@ -380,8 +380,7 @@ Berdasarkan hasil rekomendasi model yang telah dibuat maka didapat Precission de
 
 ![image](https://github.com/user-attachments/assets/bf2a120d-9591-4ab0-b9b8-43f5602045b0)
 
-Hasil Precision yang kita dapat adalah 0,97%.
-
+Hasil Precision yang kita dapat adalah 0,97%. dengan ini bisa kita simpulkan bahwasanya sistem rekomendasi yang telah dibangun dapat memberikan rekomendasi yang cukup relevan.
 
 #### **2. Collaborative Filtering Recommendation**  
 Seperti yang telah dibahas sebelumnya metrik yang digunakan untuk model adalah metrik RMSE. 
