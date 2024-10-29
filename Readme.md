@@ -50,7 +50,7 @@ Metode Term Frequency-Inverse Document Frequency (TF-IDF) adalah salah satu tekn
  $$idf_i=log \left( \frac{n}{df_i} \right)$$
  
 Keterangan:
-
+	- .
 	- $idf_i$ (*Inversed Document Frequency*) merupakan skor IDF untuk *term* $i$; 
 	- $df_i$ merupakan banyaknya dokumen yang mengandung *term* $i$; 
 	- $n$ merupakan total dokumen. 
