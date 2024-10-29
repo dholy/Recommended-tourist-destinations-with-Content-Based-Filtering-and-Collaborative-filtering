@@ -50,9 +50,11 @@ Metode Term Frequency-Inverse Document Frequency (TF-IDF) adalah salah satu tekn
  $$idf_i=log \left( \frac{n}{df_i} \right)$$
  
 Keterangan:
+
 	- $idf_i$ (*Inversed Document Frequency*) merupakan skor IDF untuk *term* $i$; 
 	- $df_i$ merupakan banyaknya dokumen yang mengandung *term* $i$; 
 	- $n$ merupakan total dokumen. 
+	
 Semakin tinggi nilai $df$ suatu *term*, maka semakin rendah $idf$ untuk *term* tersebut. Ketika jumlah $df$ sama dengan $n$ yang berarti istilah/*term* tersebut muncul di semua dokumen, $idf$ akan menjadi 0, karena $log(1)=0$. 
 
 Sedangkan nilai TF-IDF merupakan perkalian dari matriks frekuensi *term* dengan IDF-nya.
@@ -66,6 +68,7 @@ Dengan memanfaatkan TF-IDF kita akan mencoba menemukan kesesuaian antara lokasi 
 Cosine Similarity merupakan metrik yang mengukur kosinus sudut antara dua vektor dimana semakin kecil sudut yang dihasilkan, semakin mirip kedua vektor tersebut. Misalkan sudut antara dua vektor adalah 90 derajat, maka Cosine Similarity akan bernilai 0, ini berarti bahwa kedua vektor saling tegak lurus yang berarti mereka tidak memiliki kemiripan. Sebaliknya, jika Cosine Similarity mendekati atau bahkan bernilai 1, maka sudut antara dua vektor menjadi lebih kecil sehingga mereka akan lebih mirip satu sama lain.[\[5\]](https://medium.com/@ansctrwhyn/penerapan-cosine-similarity-pada-k-nearest-neighbor-5a4f96a6fe90)
 
 Cosine Similarity dilakukan dengan menghitung perkalian skalar antara dua vektor dibagi dengan perkalian panjang vektor keduanya menggunakan rumus sebagai berikut:
+
 $$\cos\theta = \frac{\vec{a} \cdot \vec{b}}{\|\vec{a}\| \|\vec{b}\|}$$
 $$\|\vec{a}\| = \sqrt{a_1^2 + a_2^2 + a_3^2 + \cdots + a_n^2}$$
 $$\|\vec{b}\| = \sqrt{b_1^2 + b_2^2 + b_3^2 + \cdots + b_n^2}$$
@@ -275,6 +278,7 @@ Pada tahapan ini kita akan membangun model machine learning yang dapat digunakan
 Content-based filtering Memberikan rekomendasi berdasarkan kemiripan atribut dari item atau barang yang disukai oleh pengguna.  [[7]](https://mti.binus.ac.id/2020/11/17/sistem-rekomendasi-content-based/)
 
 Dengan sistem rekomendasi berbasis konten, pengguna akan mendapatkan saran yang lebih personal dan sesuai dengan minat mereka. 
+
 **Kelebihan :**
  - Rekomendasi sangat personal karena didasarkan pada preferensi individu terhadap atribut spesifik destinasi
  - Dapat merekomendasikan item baru yang memiliki atribut serupa dengan item yang disukai pengguna, meskipun item tersebut belum pernah dinilai oleh pengguna lain.
@@ -382,7 +386,9 @@ Hasil Precision yang kita dapat adalah 0,97%.
 #### **2. Collaborative Filtering Recommendation**  
 Seperti yang telah dibahas sebelumnya metrik yang digunakan untuk model adalah metrik RMSE. 
 RMSE adalah metrik yang digunakan untuk mengukur rata-rata perbedaan antara nilai prediksi dan nilai aktual. Rumus RMSE adalah sebagai berikut: 
+
 $$RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}$$ 
+
 Di mana: 
 * $n$: Jumlah data 
 * $y_i$: Nilai aktual ke-i 
@@ -418,4 +424,3 @@ Dengan adanya sistem rekomendasi ini, diharapkan dapat menarik minat wisatawan u
 [6] Murel, J., & Kavlakoglu, E. (2024, 21 Maret). What is collaborative filtering?. _IBM_. Retrived from: https://www.ibm.com/topics/collaborative-filtering
 
 [7] BINUS University. (2020, November 17). Sistem rekomendasi- Content Based. Retrieved from: https://mti.binus.ac.id/2020/11/17/sistem-rekomendasi-content-based/
-
