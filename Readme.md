@@ -303,11 +303,11 @@ Dari data diatas bisa kita lihat hubungan nama wisata dengan kategori wisata. 0 
 #### 4.1. Data Preparation
 Pada tahapan ini kita melakukan penyandian (_encoding_) fitur `User_Id`dan `Place_Id` pada data frame data wisata ke dalam indeks integer dengan hasil sebagai berikut:
 
-**encoding User_Id :**
+encoding User_Id :
 
 ![image](https://github.com/user-attachments/assets/c28e8f3a-092c-4fd0-a81d-2d11f8a7059b)
 
-**encoding Place_Id**
+encoding Place_Id:
 ![image](https://github.com/user-attachments/assets/ab52e224-edf6-4df9-8199-4a22942ab639)
 
 Selanjutnya setelah melakukan encoding maka kita akan memetakan `User_Id` sebagai User_en dan `Place_Id` sebagai Place_en ke dalam dataframe data_wisata. 
@@ -331,11 +331,11 @@ Content-based filtering Memberikan rekomendasi berdasarkan kemiripan atribut dar
 
 Dengan sistem rekomendasi berbasis konten, pengguna akan mendapatkan saran yang lebih personal dan sesuai dengan minat mereka. 
 
-**Kelebihan :**
+Kelebihan :
  - Rekomendasi sangat personal karena didasarkan pada preferensi individu terhadap atribut spesifik destinasi
  - Dapat merekomendasikan item baru yang memiliki atribut serupa dengan item yang disukai pengguna, meskipun item tersebut belum pernah dinilai oleh pengguna lain.
  
-**Kekurangan:**
+Kekurangan:
  - `Cold start problem`: Sulit merekomendasikan item kepada pengguna baru yang belum memiliki riwayat interaksi.
  - Terkadang rekomendasi terlalu spesifik dan tidak mengeksplorasi pilihan yang lebih luas.
  - Kualitas rekomendasi sangat bergantung pada kualitas dan relevansi deskripsi item.
@@ -364,12 +364,12 @@ Alasan kenapa menampilkan top-n sampai 47 adalah agar kita bisa melihat kesalaha
 ### 2. Model Development dengan Collaborative Filtering
 Sistem rekomendasi penyaringan kolaboratif menggunakan informasi tentang preferensi pengguna di masa lalu, seperti rating yang diberikan pada produk atau konten tertentu, untuk memprediksi item mana yang paling mungkin disukai oleh pengguna di masa depan. Berikut adalah kelebihan dan kekurangan model ini:
 
-**Kelebihan :**
+Kelebihan :
  - Dapat menemukan item yang mungkin tidak terpikirkan oleh pengguna, tetapi disukai oleh pengguna lain dengan preferensi serupa.
  - Tidak memerlukan deskripsi rinci tentang item, hanya bergantung pada pola interaksi pengguna seperti ratings.
  - Akurasi rekomendasi akan meningkat seiring dengan bertambahnya data interaksi pengguna.
  
-**Kekurangan:**
+Kekurangan:
  - Cold start problem: Sama seperti CBF, sulit merekomendasikan item kepada pengguna baru atau item baru yang belum banyak dinilai.
  - Dapat menjadi kompleks secara komputasi untuk sistem dengan jumlah pengguna dan item yang sangat besar.
  
