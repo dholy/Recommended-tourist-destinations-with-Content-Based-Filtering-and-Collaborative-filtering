@@ -165,6 +165,14 @@ Dataframe  tourismid_df berisi variabel-variabel pada *tourism_rating.csv* denga
  
 Dataset ini berisikan 13 kolom dengan total baris data sebanyak 437 data, yang artinya terdapat 437 destinasi wisata pada dataset ini.
 
+#### **3.1. Mengecek Nilai yang hilang dan nilai kolom yang duplikat**
+Jika kita perhatikan gambar diatas, terdapat missing value pada kolom unnamed:11 dan nilai yang sama antara Place_Id dengan unnamed:12. 
+
+Jumlah missing value pada kolom unnamed:11 ada sebanyak 437 data. Selanjutnya kita dapat mengghapus kedua kolom ini (unnamed 11 dan 12) pada tahap *data preparation*. Kita juga akan menghapus time_minutes, cordinate, lat, dan long karena data lokasi dan waktu tidak diperlukan untuk tahapan selanjutnya. Untuk rating kita akan menggunakan rating dari dataframe  `ratings_df`  agar lebih sesuai dengan preferensi pengguna, sehingga kita akan menghapus data rating pada  `tourismid_df`  karena untuk sistem rekomendasi ini  data tersebut tidak akan dipakai. Berikut adalah tampilan data setelah melalui proses penghapusan kolom:
+
+![image](https://github.com/user-attachments/assets/cb58363a-931c-4f0b-a2dc-abcbffd539bf)
+
+
 ### **4. Jumlah Data Penting dari Masing-masing Atribut pada Dataset**
 Dengan menggunakan fungsi `.unique().` Kita akan melihat jumlah data atribut penting yang ada pada masing-masing dataframe.
 
@@ -181,10 +189,24 @@ Walaupun dengan data `ratings_df` dan `tourismid_id` saja sudah cukup untuk memb
  Nantinya setelah dilakukan pembersihan data, kita akan mendapatkan data akhir sebanyak 9921 data baru seperti yang ditampilkan pada gambar diatas.
 
 
-### **6. Univariate Exploratory Data Analysis (EDA)**
+###  **6. Mengecek Missing value pada setiap dataframe**
+
+![image](https://github.com/user-attachments/assets/30b2df35-9f5e-4466-bff6-4acfba22dabc)
+
+Berdasarkan data diatas ,ternyata tidak ditemukan adanya missing value pada tiap dataframe
+
+### 7. Mengecek duplikasi data
+![image](https://github.com/user-attachments/assets/4e405d52-9841-4eda-b82f-10e6170f7fc1)
+
+Berdasarkan data di atas, dapat dilihat bahwa terdapat data duplikat pada data rating dan data gabungan. dimana masing-masing memiliki 79 data duplikat. Kita akan menangani duplikasi data ini `pada data preparation`
+
+
+
+
+### **8. Univariate Exploratory Data Analysis (EDA)**
 Tahapan Selanjutnya setelah dataset sudah bersih adalah melakukan Exploratory Data Analysis.
 
-####  6.1. Dataset user
+####  8.1. Dataset user
 
 **Deskripsi Statistik**
 
@@ -206,7 +228,7 @@ Berdasarkan data diatas terdapat 300 pengguna dengan detail sebagai berikut:
 
 Dari data diatas dapat diambil kesimpulan, wisatawan yang memiliki potensi untuk liburan adalah dari daerah Bekasi, Jawa Barat. dan jumlah asal wisatawan dari rentang 10 sampai 22 juga memiliki potensi berkunjung ke destinasi wisata untuk liburan jika kita bisa merekomendasikan destinasi wisata yang sesuai kepada mereka.
 
-#### 6.2. Dataset tourism_with_id
+#### 8.2. Dataset tourism_with_id
 **Menampilkan jumlah kategori wisata**
 
 ![image](https://github.com/user-attachments/assets/f20263fd-560d-45fe-b495-0e2fe5bcb6ea)
@@ -219,7 +241,7 @@ Berdasarkan jumlah kategori wisata diatas, diketahui wisata paling diminati adal
 
 Bisa kita lihat biaya atau tarif wisata sangat bervariasi mulai dari 0 rupiah (gratis) sampai 900ribu dalam IDR.
 
-#### 6.3. Dataset tourism_rating
+#### 8.3. Dataset tourism_rating
 
 **Deskripsi Statistik**
 
@@ -236,13 +258,12 @@ Data preparation adalah proses mengubah, membersihkan, dan mengorganisasi data a
 Pada tahapan ini bertujuan untuk membersihkan dataframe dari data-data yang tidak dibutuhkan untuk proses pemodelan. Beberapa fitur yang tidak butuhkan dalam dataframe ini bisa kita lihat pada kotak merah:
 
 ![image](https://github.com/user-attachments/assets/14b27080-49e7-4b28-81c4-2f19c55f603e)
+Kita akan menghapus kolom yang tidak diperlukan tersebut menggunakan fungsi `drop`.
 
-**Mengecek Nilai yang hilang dan nilai kolom yang duplikat**
-Jika kita perhatikan gambar diatas, terdapat missing value pada kolom unnamed:11 dan nilai yang sama antara Place_Id dengan unnamed:12. 
+    tourismid_df = tourismid_df.drop(['Unnamed: 11', 'Unnamed: 12','Time_Minutes','Coordinate','Lat','Long','Rating'], axis=1)
 
-Jumlah missing value pada kolom unnamed:11 ada sebanyak 437 data. Selanjutnya kita dapat mengghapus kedua kolom ini (unnamed 11 dan 12) agar data menjadi bersih. Kita juga akan menghapus time_minutes, cordinate, lat, dan long karena data lokasi dan waktu tidak diperlukan untuk tahapan selanjutnya. Untuk rating kita akan menggunakan rating dari dataframe  `ratings_df`  agar lebih sesuai dengan preferensi pengguna, sehingga kita akan menghapus data rating pada  `tourismid_df`  karena untuk sistem rekomendasi ini  data tersebut tidak akan dipakai. Berikut adalah tampilan data setelah melalui proses penghapusan kolom:
 
-![image](https://github.com/user-attachments/assets/cb58363a-931c-4f0b-a2dc-abcbffd539bf)
+
 
 ### 2. Menggabungkan data rating dan data lokasi wisata
 Walaupun dengan data `ratings_df` dan `tourismid_id` saja sudah cukup untuk membuat sistem rekomendasi namun untuk memudahkan dalam membaca data, kita akan menggabungkan dataframe `ratings_df` dan `tourismid_df` kedalam variabel `data_wisata`. Berikut adalah tampilan data setelah disatukan:
@@ -251,24 +272,54 @@ Walaupun dengan data `ratings_df` dan `tourismid_id` saja sudah cukup untuk memb
 
 Kita mendapatkan 10 ribu data baru dan tidak ada perubahan pada jumlah user maupun place name, selanjutnya kita akan melakukan pengecekan kembali terhadap data yang sudah digabungkan pada data preparation, untuk memastikan apakah ada missing value atau duplikasi pada data.
 
-#### **2.1. Mengecek Missing value pada setiap dataframe**
-
-![image](https://github.com/user-attachments/assets/30b2df35-9f5e-4466-bff6-4acfba22dabc)
-
-Berdasarkan data diatas ,ternyata tidak ditemukan adanya missing value pada tiap dataframe
-
-#### 2.2.  Mengatasi duplikasi data
-![image](https://github.com/user-attachments/assets/4e405d52-9841-4eda-b82f-10e6170f7fc1)
-
-Berdasarkan data di atas, dapat dilihat bahwa terdapat data duplikat pada data rating dan data gabungan. dimana masing-masing memiliki 79 data duplikat.
-
-**2.2.1. Menghapus duplikasi dan Mengecek kembali jumlah duplikat setelah penghapusan**
+**2.1. Menghapus duplikasi dan Mengecek kembali jumlah duplikat setelah penghapusan**
 
 ![image](https://github.com/user-attachments/assets/2b0516d7-2208-43a8-bb14-598020f58f52)
 
 Sekarang data sudah bersih dengan jumlah akhir sebanyak 9921 baris dengan 8 kolom untuk data frame data_wisata:
 
 ![image](https://github.com/user-attachments/assets/502d3955-4c11-474e-b701-160628035f26)
+
+
+### 3. Data preparation pada Model Development dengan Content Based Filtering
+
+#### 3.1. TF-IDF Vectorizer
+TF-IDF digunakan untuk mengubah teks menjadi vektor numerik yang merepresentasikan pentingnya setiap kata dalam dokumen. 
+
+![image](https://github.com/user-attachments/assets/e3218e09-ef6c-4355-b0b7-272b75c7c32c)
+Pada konfigurasi diatas kita menyetel ngram_range =(1,2), sehingga setiap kata yang dipisahkan oleh spasi akan dianggap sebagai 1 kata dan dan 2 kata sekaligus. misalnya kalimat 'taman hiburan' akan menjadi 'taman'  (1 kata) dan 'hiburan' (1 kata)  serta  'taman hiburan'  (2 kata).
+
+**matriks tf-idf untuk beberapa nama wisata (place_name) dan kategori wisata (Category):**
+
+![image](https://github.com/user-attachments/assets/c2e69cd3-4292-4dc1-bb03-175248a1ae04)
+
+Dari data diatas bisa kita lihat hubungan nama wisata dengan kategori wisata. 0 artinya tidak memiliki hubungan sedangkan angka yang mendekati 1 maka dapat dipastikan kedua fitur memiliki relasi.
+
+
+
+### 4. Data Preparation Pada Model Development dengan Collaborative Filtering
+
+#### 4.1. Data Preparation
+Pada tahapan ini kita melakukan penyandian (_encoding_) fitur `User_Id`dan `Place_Id` pada data frame data wisata ke dalam indeks integer dengan hasil sebagai berikut:
+
+**encoding User_Id :**
+
+![image](https://github.com/user-attachments/assets/c28e8f3a-092c-4fd0-a81d-2d11f8a7059b)
+
+**encoding Place_Id**
+![image](https://github.com/user-attachments/assets/ab52e224-edf6-4df9-8199-4a22942ab639)
+
+Selanjutnya setelah melakukan encoding maka kita akan memetakan `User_Id` sebagai User_en dan `Place_Id` sebagai Place_en ke dalam dataframe data_wisata. 
+Setelah melakukan tahapan diatas, diperoleh jumlah _user_ sebesar 300, jumlah wisata sebesar 437, nilai minimal _rating_ yaitu 1, dan nilai maksimum _rating_ yaitu 5.
+
+#### 4.2. Training Data and Validation Data Split
+Setelah melakukan pemetaan atribut 'User_en' dan 'Place_en' pada dataframe 'data_wisata', data tersebut akan diacak secara random. Tujuannya adalah untuk memastikan bahwa data yang digunakan dalam analisis selanjutnya tidak memiliki bias akibat urutan data aslinya.
+
+![image](https://github.com/user-attachments/assets/3804801f-a96b-4589-9210-bdfa16a94368)
+
+Selanjutnya Untuk membangun dan mengevaluasi model yang baik, dataset akan dibagi menjadi data latih (80%) dan data uji (20%). Data latih digunakan untuk mengajarkan model mengenali pola dalam data, sementara data uji digunakan untuk mengukur seberapa baik model tersebut dapat memprediksi data yang belum pernah dilihat sebelumnya.
+
+
 
 
 ## Modeling and Result
@@ -288,18 +339,9 @@ Dengan sistem rekomendasi berbasis konten, pengguna akan mendapatkan saran yang 
  - Terkadang rekomendasi terlalu spesifik dan tidak mengeksplorasi pilihan yang lebih luas.
  - Kualitas rekomendasi sangat bergantung pada kualitas dan relevansi deskripsi item.
  
-Setelah mengetahui apa itu Content Based Filtering serta kelebihan dan kekurangannya, kita akan melanjutkan ketahap pemodelan sebagai berikut:
+Sebelumnya kita telah melakukan tahap vektorisasi tfidf pada `data preparation`, Setelahnya kita akan melanjutkan ketahap pemodelan sebagai berikut:
 
-#### 1.1. TF-IDF Vectorizer
-TF-IDF digunakan untuk mengubah teks menjadi vektor numerik yang merepresentasikan pentingnya setiap kata dalam dokumen. 
-
-**matriks tf-idf untuk beberapa nama wisata (place_name) dan kategori wisata (Category).**
-
-![image](https://github.com/user-attachments/assets/c2e69cd3-4292-4dc1-bb03-175248a1ae04)
-
-Dari data diatas bisa kita lihat hubungan nama wisata dengan kategori wisata. 0 artinya tidak memiliki hubungan sedangkan angka yang mendekati 1 maka dapat dipastikan kedua fitur memiliki relasi.
-
-#### 1.2. Cosine Similarity
+#### 1.1. Cosine Similarity
 Cosine similarity adalah metrik yang digunakan untuk mengukur kesamaan antara dua vektor. Dalam konteks pemrosesan bahasa alami, vektor ini seringkali merepresentasikan dokumen atau teks.
 Berikut adalah hasil dari Consine Similarity :
 
@@ -307,7 +349,7 @@ Berikut adalah hasil dari Consine Similarity :
 
 Dengan consine similarity kita berhasil mengidentifikasi kesamaan antara satu lokasi wisata dengan lokasi wisata lainnya. Bisa kita lihat pada gambar, angka 1 menunjukkan kecocokan antara satu wisata dengan wisata lainnya, sedangkan angka 0 menunjukkan tidak adanya kemiripan pada kedua lokasi wisata. Contohnya  Hutan Pinus Asri sangat mirip dengan Hutan Wisata Tinjomoyo Semarang.
 
-#### 1.3. Hasil Top-N Recommendation
+#### 1.2. Hasil Top-N Recommendation
 Berikut adalah hasil pengujian sistem rekomendasi dengan pendekatan `content-based recommendation`:
 
 ![image](https://github.com/user-attachments/assets/ae724778-7ea5-4bf5-a871-531e9a6c8ab2)
@@ -332,29 +374,21 @@ Sistem rekomendasi penyaringan kolaboratif menggunakan informasi tentang prefere
  
  Setelah mengetahui apa itu Collaborative Filtering serta kelebihan dan kekurangannya, kita akan melanjutkan ketahap pemodelan sebagai berikut:
 
-#### 2.1. Data Preparation
-Pada tahapan ini kita melakukan penyandian (_encoding_) fitur `User_Id`dan `Place_Id` pada data frame data wisata ke dalam indeks integer dengan hasil sebagai berikut:
+#### 2.1. Model Development and Top-n Result
+Untuk membangun model rekomendasi, kita akan memanfaatkan kemampuan deep learning melalui kelas `RecommenderNet` yang disediakan oleh Keras. Sedangkan Untuk melatih model, kita akan menggunakan optimizer Adam yang efisien serta untuk mengukur kinerja model kita akan menggunakan metrik RMSE. RecommenderNet adalah model deep learning yang digunakan untuk membangun sistem rekomendasi. Model ini bekerja dengan mempelajari representasi vektor (embedding) untuk pengguna dan item (dalam hal ini, lokasi wisata), kemudian memprediksi rating yang akan diberikan pengguna untuk item tertentu berdasarkan kemiripan vektor tersebut.
 
-**encoding User_Id :**
+**Cara Kerja RecommenderNet:**
+1. **Embedding:**  Model mempelajari representasi vektor untuk setiap pengguna dan item. Vektor-vektor ini merepresentasikan fitur laten yang menjelaskan preferensi pengguna dan karakteristik item. Misalnya, vektor untuk pengguna dapat merepresentasikan minat mereka pada kategori wisata tertentu, sedangkan vektor untuk item dapat merepresentasikan jenis wisata, lokasi, atau harga.
+2. **Perhitungan Kemiripan:** Kemiripan antara pengguna dan item dihitung dengan menghitung produk titik (dot product) antara vektor embedding pengguna dan item. Nilai produk titik yang tinggi menunjukkan kemiripan yang tinggi, yang berarti pengguna cenderung menyukai item tersebut.
+3. **Prediksi Rating:** Model menggunakan nilai kemiripan ini untuk memprediksi rating yang akan diberikan pengguna untuk item tertentu. Prediksi ini biasanya dilakukan dengan menambahkan bias pengguna dan item ke nilai produk titik, kemudian menerapkan fungsi aktivasi seperti sigmoid untuk membatasi output dalam rentang 0 hingga 1 (atau skala rating lainnya).
+4. **Pelatihan:** Model dilatih dengan data rating yang tersedia, di mana input model adalah pasangan pengguna dan item, dan outputnya adalah rating yang diberikan pengguna untuk item tersebut. Model berusaha untuk meminimalkan kesalahan prediksi rating dengan menyesuaikan bobot embedding dan bias selama pelatihan.
 
-![image](https://github.com/user-attachments/assets/c28e8f3a-092c-4fd0-a81d-2d11f8a7059b)
+**Parameter:**
 
-**encoding Place_Id**
-![image](https://github.com/user-attachments/assets/ab52e224-edf6-4df9-8199-4a22942ab639)
+* `Num_Users`: Jumlah pengguna unik dalam dataset.
+* `Num_Place`: Jumlah item (lokasi wisata) unik dalam dataset.
+* `embedding_size`: Dimensi vektor embedding untuk pengguna dan item. Semakin tinggi dimensi, semakin kompleks representasi yang dapat dipelajari oleh model, tetapi juga membutuhkan lebih banyak data dan daya komputasi. Nilai yang kita gunakan adalah 30.
 
-Selanjutnya setelah melakukan encoding maka kita akan memetakan `User_Id` sebagai User_en dan `Place_Id` sebagai Place_en ke dalam dataframe data_wisata. 
-Setelah melakukan tahapan diatas, diperoleh jumlah _user_ sebesar 300, jumlah wisata sebesar 437, nilai minimal _rating_ yaitu 1, dan nilai maksimum _rating_ yaitu 5.
-
-#### 2.2. Training Data and Validation Data Split
-Setelah melakukan pemetaan atribut 'User_en' dan 'Place_en' pada dataframe 'data_wisata', data tersebut akan diacak secara random. Tujuannya adalah untuk memastikan bahwa data yang digunakan dalam analisis selanjutnya tidak memiliki bias akibat urutan data aslinya.
-
-![image](https://github.com/user-attachments/assets/3804801f-a96b-4589-9210-bdfa16a94368)
-
-Selanjutnya Untuk membangun dan mengevaluasi model yang baik, dataset akan dibagi menjadi data latih (80%) dan data uji (20%). Data latih digunakan untuk mengajarkan model mengenali pola dalam data, sementara data uji digunakan untuk mengukur seberapa baik model tersebut dapat memprediksi data yang belum pernah dilihat sebelumnya.
-
-
-#### 2.3. Model Development and Top-n Result
-Untuk membangun model rekomendasi, kita akan memanfaatkan kemampuan deep learning melalui kelas `RecommenderNet` yang disediakan oleh Keras. Sedangkan Untuk melatih model, kita akan menggunakan optimizer Adam yang efisien serta untuk mengukur kinerja model kita akan menggunakan metrik RMSE.
 
 **Mendapatkan  Rekomendasi Wisata**
 Berikut adalah hasil rekomendasi yang diberikan oleh sistem:
