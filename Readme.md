@@ -308,6 +308,7 @@ encoding User_Id :
 ![image](https://github.com/user-attachments/assets/c28e8f3a-092c-4fd0-a81d-2d11f8a7059b)
 
 encoding Place_Id:
+
 ![image](https://github.com/user-attachments/assets/ab52e224-edf6-4df9-8199-4a22942ab639)
 
 Selanjutnya setelah melakukan encoding maka kita akan memetakan `User_Id` sebagai User_en dan `Place_Id` sebagai Place_en ke dalam dataframe data_wisata. 
