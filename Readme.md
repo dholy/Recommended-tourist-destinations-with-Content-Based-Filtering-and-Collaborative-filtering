@@ -287,6 +287,7 @@ Sekarang data sudah bersih dengan jumlah akhir sebanyak 9921 baris dengan 8 kolo
 TF-IDF digunakan untuk mengubah teks menjadi vektor numerik yang merepresentasikan pentingnya setiap kata dalam dokumen. 
 
 ![image](https://github.com/user-attachments/assets/e3218e09-ef6c-4355-b0b7-272b75c7c32c)
+
 Pada konfigurasi diatas kita menyetel ngram_range =(1,2), sehingga setiap kata yang dipisahkan oleh spasi akan dianggap sebagai 1 kata dan dan 2 kata sekaligus. misalnya kalimat 'taman hiburan' akan menjadi 'taman'  (1 kata) dan 'hiburan' (1 kata)  serta  'taman hiburan'  (2 kata).
 
 **matriks tf-idf untuk beberapa nama wisata (place_name) dan kategori wisata (Category):**
