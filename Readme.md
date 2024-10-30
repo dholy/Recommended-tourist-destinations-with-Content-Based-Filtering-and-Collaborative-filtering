@@ -129,7 +129,7 @@ Dataframe user_df berisi variabel-variabel pada *user.csv* dengan detail  sebaga
  - `Location` : Merupakan Alamat dari user
  - `Age` : Merupakan  usia dari user
  
- Terdapat 3 kolom dengan total baris data sebanyak 300 data, Dataset ini berisi informasi penting seperti alamat dan umur dari user wisatawan. Data ini akan kita kugunakan untuk menganalisa.
+ Terdapat 3 kolom dengan total baris data sebanyak 300 data, Dataset ini berisi informasi penting seperti alamat dan umur dari user wisatawan. 
 
 ### **2.  ratings_df** 
 
@@ -240,7 +240,7 @@ Pada tahapan ini bertujuan untuk membersihkan dataframe dari data-data yang tida
 **Mengecek Nilai yang hilang dan nilai kolom yang duplikat**
 Jika kita perhatikan gambar diatas, terdapat missing value pada kolom unnamed:11 dan nilai yang sama antara Place_Id dengan unnamed:12. 
 
-Jumlah missing value pada kolom unnamed:11 ada sebanyak 437 data. Kita dapat mengghapus kedua kolom ini (unnamed 11 dan 12) agar data menjadi bersih. Kita juga akan menghapus time_minutes, cordinate, lat, dan long karena data lokasi dan waktu tidak diperlukan untuk tahapan selanjutnya. Untuk rating kita akan menggunakan rating dari dataframe  `ratings_df`  agar lebih sesuai dengan preferensi pengguna, sehingga kita akan menghapus data rating pada  `tourismid_df`  karena untuk sistem rekomendasi ini  data tersebut tidak akan dipakai. Berikut adalah tampilan data setelah melalui proses penghapusan kolom:
+Jumlah missing value pada kolom unnamed:11 ada sebanyak 437 data. Selanjutnya kita dapat mengghapus kedua kolom ini (unnamed 11 dan 12) agar data menjadi bersih. Kita juga akan menghapus time_minutes, cordinate, lat, dan long karena data lokasi dan waktu tidak diperlukan untuk tahapan selanjutnya. Untuk rating kita akan menggunakan rating dari dataframe  `ratings_df`  agar lebih sesuai dengan preferensi pengguna, sehingga kita akan menghapus data rating pada  `tourismid_df`  karena untuk sistem rekomendasi ini  data tersebut tidak akan dipakai. Berikut adalah tampilan data setelah melalui proses penghapusan kolom:
 
 ![image](https://github.com/user-attachments/assets/cb58363a-931c-4f0b-a2dc-abcbffd539bf)
 
@@ -266,7 +266,7 @@ Berdasarkan data di atas, dapat dilihat bahwa terdapat data duplikat pada data r
 
 ![image](https://github.com/user-attachments/assets/2b0516d7-2208-43a8-bb14-598020f58f52)
 
-Sekarang data sudah bersih dengan jumlah akhir sebanyak 9921 baris dengan 10 kolom:
+Sekarang data sudah bersih dengan jumlah akhir sebanyak 9921 baris dengan 8 kolom untuk data frame data_wisata:
 
 ![image](https://github.com/user-attachments/assets/502d3955-4c11-474e-b701-160628035f26)
 
@@ -305,7 +305,7 @@ Berikut adalah hasil dari Consine Similarity :
 
 ![image](https://github.com/user-attachments/assets/020a443e-293c-4807-9693-d5a035b1a7ca)
 
-Dengan consine similarity kita berhasil mengidentifikasi kesamaan antara satu lokasi wisata dengan lokasi wisata lainnya. Bisa kita lihat pada gambar angka 1 menunjukkan kecocokan antara satu wisata dengan wisata lainnya, sedangkan angka 0 menunjukkan tidak adanya kemiripan pada kedua lokasi wisata. Contohnya  Hutan Pinus Asri sangat mirip dengan Hutan Wisata Tinjomoyo Semarang.
+Dengan consine similarity kita berhasil mengidentifikasi kesamaan antara satu lokasi wisata dengan lokasi wisata lainnya. Bisa kita lihat pada gambar, angka 1 menunjukkan kecocokan antara satu wisata dengan wisata lainnya, sedangkan angka 0 menunjukkan tidak adanya kemiripan pada kedua lokasi wisata. Contohnya  Hutan Pinus Asri sangat mirip dengan Hutan Wisata Tinjomoyo Semarang.
 
 #### 1.3. Hasil Top-N Recommendation
 Berikut adalah hasil pengujian sistem rekomendasi dengan pendekatan `content-based recommendation`:
@@ -343,7 +343,7 @@ Pada tahapan ini kita melakukan penyandian (_encoding_) fitur `User_Id`dan `Plac
 ![image](https://github.com/user-attachments/assets/ab52e224-edf6-4df9-8199-4a22942ab639)
 
 Selanjutnya setelah melakukan encoding maka kita akan memetakan `User_Id` sebagai User_en dan `Place_Id` sebagai Place_en ke dalam dataframe data_wisata. 
-Setelah melakukan tahapan diatas Diperoleh jumlah _user_ sebesar 300, jumlah wisata sebesar 437, nilai minimal _rating_ yaitu 1, dan nilai maksimum _rating_ yaitu 5.
+Setelah melakukan tahapan diatas, diperoleh jumlah _user_ sebesar 300, jumlah wisata sebesar 437, nilai minimal _rating_ yaitu 1, dan nilai maksimum _rating_ yaitu 5.
 
 #### 2.2. Training Data and Validation Data Split
 Setelah melakukan pemetaan atribut 'User_en' dan 'Place_en' pada dataframe 'data_wisata', data tersebut akan diacak secara random. Tujuannya adalah untuk memastikan bahwa data yang digunakan dalam analisis selanjutnya tidak memiliki bias akibat urutan data aslinya.
@@ -372,7 +372,7 @@ Sampai tahap ini model telah berhasil memberikan prediksi yang baik. Dimana kita
 ## Evaluation
 
 #### **1. Content-based Recommendation**
-Ketika kita membangun sebuah model rekomendasi berbasis konten, langkah evaluasi sangat penting untuk mengukur seberapa baik model tersebut bekerja. Untuk model ini Kita akan menggunakan metrik Precision, Precision adalah metrik yang mengukur seberapa akurat sebuah sistem rekomendasi dalam memberikan rekomendasi yang relevan. Dalam konteks protek ini, precision menunjukkan seberapa besar persentase tempat wisata yang direkomendasikan yang memang sesuai dengan preferensi pengguna. Precision dapat dihitung menggunakan rumus berikut:
+Ketika kita membangun sebuah model rekomendasi berbasis konten, langkah evaluasi sangat penting untuk mengukur seberapa baik model tersebut bekerja. Untuk model ini Kita akan menggunakan metrik Precision, Precision adalah metrik yang mengukur seberapa akurat sebuah sistem rekomendasi dalam memberikan rekomendasi yang relevan. Dalam konteks proyek ini, precision menunjukkan seberapa besar persentase tempat wisata yang direkomendasikan yang memang sesuai dengan preferensi pengguna. Precision dapat dihitung menggunakan rumus berikut:
 
 $$Presisi = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{Jumlah total rekomendasi}}$$
    
@@ -380,7 +380,8 @@ Berdasarkan hasil rekomendasi model yang telah dibuat maka didapat Precission de
 
 ![image](https://github.com/user-attachments/assets/bf2a120d-9591-4ab0-b9b8-43f5602045b0)
 
-Hasil Precision yang kita dapat adalah 0,97%. dengan ini bisa kita simpulkan bahwasanya sistem rekomendasi yang telah dibangun dapat memberikan rekomendasi yang cukup relevan.
+Hasil Precision yang kita dapat adalah 0,97%. berdasarkan persentase tersebut kita dapat menyimpulkan bahwasanya sistem rekomendasi yang telah dibangun dapat memberikan rekomendasi yang cukup relevan.
+
 
 #### **2. Collaborative Filtering Recommendation**  
 Seperti yang telah dibahas sebelumnya metrik yang digunakan untuk model adalah metrik RMSE. 
@@ -406,10 +407,10 @@ Dari hasil plot, terlihat bahwa model mengalami sedikit overfitting. Hal ini dit
 
 Berdasarkan hasil model yang telah kita bangun menggunakan Content Based Filtering dan Collaborative Filtering kita mendapatkan metrik precission dan RMSE yang cukup baik. dan kita telah berhasil Membangun model yang dapat memberikan rekomendasi wisata yang mirip dengan wisata yang pernah dikunjungi serta destinasi yang mungkin disukai oleh wisatawan berdasarkan rating yang pernah mereka berikan.
 
-Dengan adanya sistem rekomendasi ini, diharapkan dapat menarik minat wisatawan untuk berkunjung dan liburan kembali. Namun tentunya rekomendasi yang baik bukan hanya sampai disini saja, setelah kita memberikan rekomendasi yang sesuai, kita juga harus memberikan informasi dan fasilitas yang relevan untuk wisatawan, sehingga sektor pariwisata akan dapat bertahan dan terus berkembang kedepannya
+Dengan adanya sistem rekomendasi ini, diharapkan dapat menarik minat wisatawan untuk berkunjung dan liburan kembali. Namun tentunya rekomendasi yang baik bukan hanya sampai disini saja, setelah kita memberikan rekomendasi yang sesuai, kita juga harus memberikan informasi dan fasilitas yang relevan untuk wisatawan, sehingga destinasi wisata pada sektor pariwisata akan dapat bertahan dan terus berkembang kedepannya.
 
 
-## Referensi
+### Referensi
 [1] Kementerian Pariwisata dan Ekonomi Kreatif/Badan Pariwisata dan Ekonomi Kreatif (Kemenparekraf/Baparekraf). (2021). Panduan Potensi Pembangunan Sektor Pariwisata dan Ekonomi Kreatif. _Kemenparekraf_. Retrived from: https://kemenparekraf.go.id/ragam-pariwisata/Panduan-Potensi-Pembangunan-Sektor-Pariwisata-dan-Ekonomi-Kreatif
 
 [2] Faurina, R., & Sitanggang, E. (2023). Implementasi Metode Content-Based Filtering dan Collaborative Filtering pada Sistem Rekomendasi Wisata di Bali. _Techno.Com_, _22_(4), 870–881. https://doi.org/10.33633/tc.v22i4.8556
@@ -422,4 +423,4 @@ Dengan adanya sistem rekomendasi ini, diharapkan dapat menarik minat wisatawan u
 
 [6] Murel, J., & Kavlakoglu, E. (2024, 21 Maret). What is collaborative filtering?. _IBM_. Retrived from: https://www.ibm.com/topics/collaborative-filtering
 
-[7] BINUS University. (2020, November 17). Sistem rekomendasi- Content Based. Retrieved from: https://mti.binus.ac.id/2020/11/17/sistem-rekomendasi-content-based/
+[7] BINUS University. (2020, November 17). Sistem rekomendasi- Content Based. _BINUS University_. Retrieved from: https://mti.binus.ac.id/2020/11/17/sistem-rekomendasi-content-based/
